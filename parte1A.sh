@@ -1,0 +1,1 @@
+python3 T1p1a.py AV1.txt
