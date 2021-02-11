@@ -16,8 +16,8 @@ def getSidFromLine(line):
 
 # Monta o mapa de SIDs a partir do
 # arquivo sid-msg.map
-def buildSidMap():
-  file = open('sid-msg.map', 'r')
+def buildSidMap(path):
+  file = open(path, 'r')
   sidMap = {}
   for line in file:
     sid, description = line.strip('\n').split(' || ')[0:2]
@@ -35,8 +35,8 @@ protocolMap = {
 
 # Caso o arquivo de entrada não seja passado
 # por parâmetro, sai do programa
-if len(sys.argv) < 2:
-  print('ERRO: Arquivo de entrada não encontrado')
+if len(sys.argv) < 3:
+  print('ERRO: Arquivos de entrada não encontrado')
   exit()
 
 # Abertura do arquivo de entrada
@@ -46,7 +46,7 @@ file = open(sys.argv[1], 'r')
 summaryFile = open('T1p2.txt', 'w')
 
 # Monta o mapa de SIDs
-sidMap = buildSidMap()
+sidMap = buildSidMap(sys.argv[2])
 
 # Para cada linha do arquivo,
 # extrai as informações necessárias
