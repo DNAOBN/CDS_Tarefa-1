@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="30" android:compileSdkVersionCodename="11" package="com.microsoft.teams" platformBuildVersionCode="30" platformBuildVersionName="11">
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.microsoft.teams"/>
+    <permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.microsoft.teams" android:protectionLevel="signature"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" android:required="false"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-feature android:name="android.hardware.fingerprint" android:required="false"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <queries>
+        <package android:name="com.azure.authenticator"/>
+        <package android:name="com.microsoft.identity.testuserapp"/>
+        <package android:name="com.microsoft.windowsintune.companyportal"/>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService"/>
+        </intent>
+    </queries>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:fullBackupContent="@xml/backup_config" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="com.microsoft.skype.teams.app.SkypeTeamsApplication" android:networkSecurityConfig="@xml/network_security_config" android:requestLegacyExternalStorage="true" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true">
+        <receiver android:name="com.baidu.android.pushservice.PushServiceReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW"/>
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK"/>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.baidu.android.pushservice.RegistrationReceiver">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD"/>
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:name="com.baidu.android.pushservice.PushService">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.baidu.android.pushservice.CommandService"/>
+        <provider android:authorities="com.microsoft.teams.bdpush" android:exported="true" android:name="com.baidu.android.pushservice.PushInfoProvider" android:protectionLevel="signature" android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.microsoft.teams"/>
+        <meta-data android:name="api_key" android:value="Y9lbzhrhi15wWxqXSU3ooqG5"/>
+        <receiver android:name="com.microsoft.skype.teams.notifications.baidu.BaiduPushMessageReceiver">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE"/>
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE"/>
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="true" android:name="com.microsoft.identity.client.BrowserTabActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="com.microsoft.teams" android:path="/fcg80qvoM1YMKJZibjBwQcDfOno=" android:scheme="msauth"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="android.content.APP_RESTRICTIONS" android:resource="@xml/app_restriction_config"/>
+        <provider android:authorities="com.microsoft.teams.provider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SplashActivity" android:theme="@style/SplashTheme">
+            <intent-filter android:icon="@drawable/ic_contacts_logo">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="vnd.android.cursor.item/com.microsoft.teams.android.teamscall.action"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="msteams"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="devspaces.skype.com" android:pathPrefix="/l" android:scheme="https"/>
+                <data android:host="ppespaces.skype.com" android:pathPrefix="/l" android:scheme="https"/>
+                <data android:host="teams.skype.com" android:pathPrefix="/l" android:scheme="https"/>
+                <data android:host="teams.microsoft.com" android:pathPrefix="/l" android:scheme="https"/>
+                <data android:host="devspaces.skype.com" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="ppespaces.skype.com" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="teams.skype.com" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="teams.microsoft.com" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="gov.teams.microsoft.us" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="dod.teams.microsoft.us" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="teams.live.com" android:pathPrefix="/l" android:scheme="https"/>
+                <data android:host="teams.live.com" android:pathPrefix="/l" android:scheme="msteams"/>
+                <data android:host="teams.live.com" android:pathPrefix="/l" android:scheme="msteams-fl"/>
+                <data android:host="teams.live.com" android:pathPrefix="/meet" android:scheme="msteams"/>
+                <data android:host="teams.live.com" android:pathPrefix="/meet" android:scheme="msteams-fl"/>
+                <data android:host="teams.live.com" android:pathPrefix="/meet" android:scheme="https"/>
+            </intent-filter>
+        </activity>
+        <activity-alias android:name="com.microsoft.skype.teams.Launcher" android:targetActivity="com.microsoft.skype.teams.views.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity android:label="@string/title_login_activity" android:name="com.microsoft.aad.adal.AuthenticationActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/MainActivityStyleSplash" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.BaseScreenshotTestActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.PrepareSdkRunnerActivity" android:noHistory="true" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ImageViewerPagedActivity" android:noHistory="true" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ProcessDeeplinkActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.AuthenticatedProcessDeeplinkActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.TabReorderingActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FreActivity" android:theme="@style/AppTheme.NoActionBarDefaultTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.Fre4vActivity" android:theme="@style/AppTheme.NoActionBarDefaultTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.AdHocMeetingActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FreAuthActivity" android:theme="@style/AppTheme.NoActionBarDefaultTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.WelcomeActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustPan"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EnrollmentProcessingActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.PrivacyNoticeActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ConversationsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:label="@string/files_tab_text" android:name="com.microsoft.skype.teams.files.listing.views.PersonalFilesActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/files_tab_text" android:name="com.microsoft.skype.teams.calling.expo.files.ExpoFilesActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/files_tab_text" android:name="com.microsoft.skype.teams.files.listing.views.ChannelFilesActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:label="@string/create_new_group_chat" android:name="com.microsoft.skype.teams.views.activities.TflNewGroupActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="stateVisible">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:label="@string/files_tab_text" android:name="com.microsoft.skype.teams.files.listing.views.ChatFilesActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ChatsActivity"/>
+        </activity>
+        <activity android:label="@string/dash_board_tabs_title_bar" android:name="com.microsoft.skype.teams.views.activities.ChatTabListActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ChatsActivity"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.microsoft.skype.teams.views.activities.CustomTabsShellActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.BlockingActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.microsoft.skype.teams.views.activities.MasterDetailContainerActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.microsoft.skype.teams.views.activities.ChatsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.views.activities.UnifiedChatViewSeeAllActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.calendar.views.activities.CreateMeetingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.DescriptionEditActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/edit_message" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EditMessageActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.UsersListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ChatGroupUsersListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.UserActivityActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ConversationThreadActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ConversationsActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ConversationsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ConversationMeetingThreadActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ConversationsActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="stateHidden">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ConversationsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.VoicemailActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ContactGroupsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.TranslationActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.TranslationSelectLanguageActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.TranslationAddLanguageActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.VaultOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.QuietHoursActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.QuietDaysActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.QuietHoursActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ActiveOnDesktopActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ActiveOnDesktopActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SubscribedChannelsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SubscribedChannelsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingsNotificationsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MeetingsNotificationsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.WhenInMeetingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.WhenInMeetingsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.OptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:label="@string/join_meeting_by_code_label" android:name="com.microsoft.skype.teams.meetingjoinbycode.views.activities.MeetingJoinByCodeActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.WelcomeActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:label="@string/setting_manage_delegates_label" android:name="com.microsoft.skype.teams.delegates.views.activities.ManageDelegatesActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.delegates.views.activities.ManageDelegatePermissionsActivity" android:parentActivityName="com.microsoft.skype.teams.delegates.views.activities.ManageDelegatesActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".delegates.views.activities.ManageDelegatesActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DataManagementActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.PrivacyOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FluidComponentEditActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ChatsActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ChatsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FluidTableComposeActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ChatsActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ChatsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FluidComponentComposeActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ChatsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.ChatsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.GeneralSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MediaOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.OptionsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.OptionsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SettingsReduceDataUsageActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.DataManagementActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.DataManagementActivity"/>
+        </activity>
+        <activity android:label="@string/setting_calling_label" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallingOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:label="@string/setting_contacts_label" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.PeopleOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.SettingsActivity"/>
+        </activity>
+        <activity android:label="@string/setting_calling_label" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallingForwardOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallingOptionsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.CallingOptionsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingChatMuteSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.NotificationsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DebugActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DebugSubstrateSearchActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.InstrumentationActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.SettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.WebViewerActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.AboutActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+        </activity>
+        <activity android:label="@string/meeting_description" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingDescriptionActivity" android:parentActivityName="com.microsoft.skype.teams.calendar.views.activities.MeetingDetailsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".calendar.views.activities.MeetingDetailsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.people.contactcard.views.ContactCardActivity" android:theme="@style/AppBarOverlayOnContactCard"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ContactStatusMessageSeeMoreActivity" android:theme="@style/AppBarOverlayOnContactCard"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SetStatusMessageActivity" android:theme="@style/AppBarOverlayOnContactCard"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DlpMessageOverrideActivity" android:theme="@style/AppBarOverlayOnContactCard" android:windowSoftInputMode="stateVisible"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.GroupProfileCardActivity" android:theme="@style/AppBarOverlayOnContactCard"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.BookmarksActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.FeedbackActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SuggestedReplyFeedbackActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.AnnotationActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:launchMode="singleTop" android:name="com.microsoft.teams.search.core.views.activities.SearchActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.search.core.views.activities.UnpinnedChatsSearchActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.EditPinnedChatsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.EditPinnedChatsActivity"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ShowAllTeamsOrTeamChannelsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.BrowseTeamsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EditPinnedChannelsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EditPinnedChatsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchSuggestedTeamsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.BrowseTeamsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.AddMemberActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.UsersListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.InviteToTeamInProgressActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.AddMemberActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.AddParticipantsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.ParticipantsListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ChatGroupAddMemberActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.UsersListActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchAddParticipantMeetingActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="stateVisible"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchUsersToStartNewCallActivity" android:noHistory="true" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchUsersToStartNewCall2Activity" android:noHistory="true" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar.Transparent" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchUsersActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallingForwardOptionsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.AddRoomActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchUserConsultTransferActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.InCallActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.MeetingOptionsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.AdHocMeetingActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchTeamDashboardActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.UsersListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SearchAddParticipantChannelMeetingActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ChannelSearchMemberActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ManageChannelsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.UsersListActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ShareToSkypeTeamsActivity" android:noHistory="true" android:theme="@style/AppTheme.NoActionBar.BottomSheet" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="*/*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.CalendarListEventsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.MeetingDetailsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.MeetingParticipantsActivity" android:parentActivityName="com.microsoft.skype.teams.calendar.views.activities.MeetingDetailsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calendar.views.activities.MeetingFilesActivity" android:parentActivityName="com.microsoft.skype.teams.calendar.views.activities.MeetingDetailsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:excludeFromRecents="true" android:name="com.microsoft.skype.teams.views.activities.PreJoinActivity" android:theme="@style/AppTheme.PreJoinActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.InCallShareContentActivity" android:theme="@style/AppTheme.ShareInCallActivity"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.InCallFilesActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.InCallShareContentActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DialCallActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:screenOrientation="nosensor" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:configChanges="orientation|screenSize" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingRecordingVideoActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:name="com.microsoft.skype.teams.files.listing.views.DocumentsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ChatsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.media.views.activities.ImageViewerActivity" android:theme="@style/AppTheme.NoActionBar.Black"/>
+        <activity android:label="@string/label_gallery" android:name="com.microsoft.skype.teams.views.activities.ImageSlidePagerActivity" android:theme="@style/AppTheme.NoActionBar.Black"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.CodeSnippetViewerActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/select_tenant" android:name="com.microsoft.skype.teams.views.activities.TenantPickerListActivity" android:theme="@style/AppTheme.NoActionBarDefaultTheme"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SsoAccountsListActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.MeetingJoinWelcomeActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.MeetingJoinWelcomeActivityUnified" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="stateVisible"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.MeetingJoinWelcomeAccountPickerActivity" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="stateVisible"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EduAddMemberActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CreateEditTeamActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EDUTemplatesActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CreateEditTeamActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.PrivacyActivity" android:noHistory="true" android:parentActivityName="com.microsoft.skype.teams.views.activities.CreateEditTeamActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ChannelPrivacyActivity" android:noHistory="true" android:parentActivityName="com.microsoft.skype.teams.views.activities.ManageChannelsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ClassificationActivity" android:noHistory="true" android:parentActivityName="com.microsoft.skype.teams.views.activities.CreateEditTeamActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.files.open.views.FilePreviewActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.ChannelPickerActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.CardPreviewActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.TaskModuleCardActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.QueryMessagingExtensionsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.ActionMessagingExtensionActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/floodgate_theme_label" android:name="com.microsoft.office.feedback.floodgate.MainActivity" android:theme="@style/feedback_theme"/>
+        <activity android:label="@string/floodgate_theme_label" android:name="com.microsoft.office.feedback.inapp.MainActivity" android:theme="@style/feedback_theme"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.PreOreoNotificationEventsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.PreOreoNotificationEventsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <receiver android:name="com.microsoft.skype.teams.calling.call.CallingBroadcastReceiver"/>
+        <receiver android:name="com.microsoft.skype.teams.services.fcm.NotificationBroadcastReceiver"/>
+        <receiver android:name="com.microsoft.skype.teams.utilities.InstallationBroadcastReceiver" android:permission="android.permission.INSTALL_PACKAGES">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.microsoft.skype.teams.utilities.ApplicationPickerBroadcastReceiver"/>
+        <receiver android:name="ols.microsoft.com.shiftr.service.ClockInClockOutAlarmReceiver"/>
+        <receiver android:name="ols.microsoft.com.shiftr.service.NextShiftAlarmReceiver"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.calling.nativephonebookintegration.AccountService">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_contacts"/>
+            <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contact_structure"/>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/sync_authenticator"/>
+        </service>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.calling.notification.CallForegroundService"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.calling.notification.PreCallForegroundService"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.calling.notification.AutoDismissingForegroundService"/>
+        <service android:exported="false" android:foregroundServiceType="mediaProjection" android:name="com.microsoft.skype.teams.calling.notification.ScreenCaptureForegroundService"/>
+        <service android:enabled="true" android:exported="true" android:name="com.microsoft.skype.teams.calling.call.CommandInvokerService" android:permission="android.permission.CALL_PHONE"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.notifications.fcm.FcmPushMessageReceiver">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="true" android:exported="false" android:name="com.microsoft.skype.teams.cortana.service.CortanaForegroundService"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.files.upload.services.FileUploadForegroundService"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_places_api_key"/>
+        <meta-data android:name="com.microsoft.intune.mam.MAMMultiIdentity" android:value="true"/>
+        <meta-data android:name="com.microsoft.intune.mam.IntuneStyleOverride" android:resource="@xml/mam_intune_pin"/>
+        <meta-data android:name="com.microsoft.intune.mam.aad.Authority" android:value="https://login.windows.net/common/oauth2/authorize"/>
+        <meta-data android:name="intune_FWLinkOverride_placeholder" android:value="intune_FWLinkOverride_placeholder"/>
+        <meta-data android:name="com.microsoft.intune.mam.aad.ClientID" android:value="1fec8e78-bce4-4aaf-ab1b-5451cc387264"/>
+        <meta-data android:name="com.microsoft.intune.mam.aad.SkipBroker" android:value="false"/>
+        <meta-data android:name="com.google.android.gms.car.application" android:resource="@xml/teams_android_auto_desc"/>
+        <service android:exported="true" android:name="com.microsoft.skype.teams.services.postmessage.PostMessageServiceQueueJobP" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.services.postmessage.PostMessageServiceQueueJobFD">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.services.autoprune.AutoPruneServiceJobP" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.services.autoprune.AutoPruneServiceJobFD">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.microsoft.skype.teams.services.authorization.SkypeTokenRefreshJobP" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="true" android:name="com.microsoft.skype.teams.services.authorization.SkypeTokenRefreshJobM" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.services.authorization.SkypeTokenRefreshJobFD">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+        <activity android:label="@string/invite_people_activity_title" android:name="com.microsoft.skype.teams.views.activities.InviteToTenantActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="Edit name" android:name="com.microsoft.skype.teams.views.activities.EditDisplayNameActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/edit_name_label" android:name="com.microsoft.skype.teams.views.activities.EditMSANameActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.microsoft.skype.teams.views.activities.TeamsJsHostActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.microsoft.skype.teams.cortana.CortanaDebugSettingsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.cortana.CortanaSettingsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.cortana.CortanaVoiceSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.cortana.CortanaSettingsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".cortana.CortanaSettingsActivity"/>
+        </activity>
+        <activity android:label="@string/app_name" android:name="ols.microsoft.com.shiftr.activity.SingleFragmentActivity" android:screenOrientation="sensorPortrait" android:theme="@style/Shiftr.AppTheme.FullScreen" android:windowSoftInputMode="adjustResize"/>
+        <service android:enabled="true" android:exported="false" android:name="com.microsoft.skype.teams.dock.DockForegroundService"/>
+        <service android:exported="false" android:name="com.microsoft.skype.teams.talknow.service.TalkNowForegroundService"/>
+        <receiver android:name="com.microsoft.skype.teams.app.BluetoothBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.microsoft.skype.teams.calendar.receivers.CalendarNotificationBroadcastReceiver"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.TeamMemberTagsListActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.TeamMemberTagListMembersActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.TeamMemberTagsListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.TeamMemberTagCardActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.TeamMemberTagsListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SdkShareTargetActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.ShareToSkypeTeamsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.microsoft.skype.teams.views.activities.ShareToSkypeTeamsActivity"/>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.views.activities.AddTeamMemberTagActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.teams.search.core.views.activities.ChatConversationsDrillDownMenuActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.SharedDeviceActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.search.core.views.activities.ContextualSearchActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.MainActivity"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingStartNotificationSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.NotificationsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingReminderTypeSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.NotificationsActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MeetingReminderTimeSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.NotificationsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.NotificationsActivity"/>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.views.activities.AliasDiscoverabilityActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.PrivacyOptionsActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.BlockedNumbersSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallingOptionsActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.BlockedContactsSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.PeopleOptionsActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.USBAudioStreamingActivity" android:theme="@style/AppTheme.FullScreen"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.people.contactcard.views.AddMSAPhoneEmailActivity" android:theme="@style/AppBarOverlayOnContactCard" android:windowSoftInputMode="adjustResize"/>
+        <activity android:label="@string/settings_feedback_title" android:name="com.microsoft.skype.teams.views.activities.SettingsGiveFeedbackActivity" android:theme="@style/feedback_theme"/>
+        <activity android:name="com.microsoft.skype.teams.views.fragments.ReportAbuseActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.calling.ringtones.SelectCallRingtoneActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallingOptionsActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.CallingOptionsActivity"/>
+        </activity>
+        <activity android:name="com.microsoft.skype.teams.views.activities.PlatformAppPermissionsActivity" android:theme="@style/PlatformAppPermissionDialogThemed"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.PlatformAppsPermissionsSettingsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ConnectedExperiencesSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.AboutActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.AboutActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.DDVSettingsActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.AboutActivity" android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".views.activities.AboutActivity"/>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.ImmersiveReaderActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.QuietTimeActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.MemeMakerActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.SelectChatActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.calling.meetnow.views.activities.MeetNowDetailsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.skype.teams.roomcontroller.views.RoomControllerActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:launchMode="singleInstance" android:name="com.microsoft.skype.teams.views.activities.BroadcastMeetingActivity" android:supportsPictureInPicture="true" android:taskAffinity="views.activities.BroadcastMeetingActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.microsoft.skype.teams.views.activities.BroadcastMeetingInfoActivity" android:taskAffinity="com.microsoft.skype.teams" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.microsoft.skype.teams.views.activities.BroadcastQnaActivity" android:taskAffinity="com.microsoft.skype.teams" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:excludeFromRecents="true" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallEarlyCancelFbActivity" android:noHistory="true" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:label="@string/ContentDescription_CallFeedbackPageTitle" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallFeedbackActivity" android:noHistory="true" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallRating"/>
+        <activity android:label="@string/ContentDescription_CallRatingPageTitle" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallRatingActivity" android:noHistory="true" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallRating"/>
+        <activity android:label="@string/ContentDescription_CallThankingTitle" android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.CallRatingThankingActivity" android:noHistory="true" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallRating"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.InCallActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.skype.teams.views.activities.EndCallActivity" android:noHistory="true" android:screenOrientation="nosensor" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.FreMeetingJoinActivity" android:noHistory="true" android:theme="@style/AppTheme.FullScreen" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.microsoft.skype.teams.views.activities.InCallActivity" android:supportsPictureInPicture="true" android:taskAffinity=".views.activities.InCallActivity" android:theme="@style/AppTheme.CallActivities"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.InCallDriveModeActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.InCallActivity" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.microsoft.teams.calling.views.activities.ManageAudioVideoActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.CallRosterActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:excludeFromRecents="true" android:name="com.microsoft.skype.teams.views.activities.PreCallActivity" android:noHistory="true" android:theme="@style/AppTheme.PreJoinActivity"/>
+        <activity android:name="com.microsoft.skype.teams.views.activities.WhiteboardActivity" android:parentActivityName="com.microsoft.skype.teams.views.activities.InCallActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.VaultFormActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar"/>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.UserVaultsActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+        </activity>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.GroupVaultActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+        </activity>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.VaultRemoteAuthActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar"/>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.VaultKeyForgotActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar"/>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.VaultSetupActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar"/>
+        <activity android:label="@string/vault_app_name" android:name="com.microsoft.teams.vault.views.activities.VaultKeyManagementActivity" android:screenOrientation="nosensor" android:theme="@style/VaultTheme.NoActionBar"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <service android:exported="false" android:name="com.microsoft.teams.location.services.tracking.LocationSharingIntentService"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.location.ui.ShareLocationActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.location.ui.ShareLocationActivityNew" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.location.ui.GroupLocationsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="standard" android:name="com.microsoft.teams.location.ui.SharingSessionsOverviewActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:launchMode="singleTop" android:name="com.microsoft.teams.location.ui.LocationSettingsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="keyboardHidden|screenSize" android:name="com.microsoft.teams.mediagallery.views.activities.GalleryActivity" android:screenOrientation="portrait" android:theme="@style/GalleryTheme"/>
+        <activity android:configChanges="keyboardHidden|screenSize" android:name="com.microsoft.teams.media.views.activities.MediaItemViewerActivity" android:screenOrientation="unspecified" android:theme="@style/MediaViewerTheme"/>
+        <activity android:configChanges="keyboardHidden|screenSize" android:exported="true" android:name="com.microsoft.teams.sharedlinks.views.activities.LinksActivity" android:screenOrientation="portrait" android:theme="@style/LinksTheme"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.microsoft.oneplayer.player.ui.view.activity.OnePlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
+        <provider android:authorities="com.microsoft.teams.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider_paths"/>
+        </provider>
+        <activity android:name="com.microsoft.appcenter.distribute.DeepLinkActivity" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="updates" android:path="/" android:scheme="appcenter"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.microsoft.appcenter.distribute.DownloadManagerReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:launchMode="singleTask" android:name="com.microsoft.identity.common.internal.providers.oauth2.AuthorizationActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:launchMode="singleTask" android:name="com.microsoft.identity.client.helper.BrokerHelperActivity"/>
+        <activity android:exported="false" android:label="@string/places_autocomplete_label" android:name="com.google.android.libraries.places.widget.AutocompleteActivity" android:theme="@style/PlacesAutocompleteOverlay" android:windowSoftInputMode="adjustResize"/>
+        <service android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.network.NetworkService"/>
+        <receiver android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.configuration.BeaconListenerAlarmReceiver"/>
+        <receiver android:enabled="false" android:exported="true" android:name="com.microsoft.beacon.network.WifiStatusReceiver">
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.microsoft.identity.common.internal.broker.BrokerActivity"/>
+        <service android:exported="true" android:name="com.firebase.jobdispatcher.GooglePlayReceiver" android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="false" android:exported="true" android:name="com.microsoft.beacon.services.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.internal.IQAlarmReceiver">
+            <intent-filter>
+                <action android:name="com.mobiledatalabs.mileiq.ACTION_CHECK_LOCATION_ALARM"/>
+                <action android:name="com.mobiledatalabs.mileiq.ACTION_TIMER_ALARM"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.services.DriveStateService"/>
+        <service android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.services.PersistentForegroundService"/>
+        <receiver android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.internal.DriveEventBroadcastReceiver"/>
+        <receiver android:enabled="false" android:exported="false" android:name="com.microsoft.beacon.internal.UserGeofenceBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.mobiledatalabs.mileiq.drive.ACTION_PROCESS_UPDATES"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="false" android:name="com.microsoft.beacon.internal.PowerStatusReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="false" android:name="com.microsoft.beacon.location.LocationProvidersChangedReceiver">
+            <intent-filter>
+                <action android:name="android.location.MODE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.microsoft.teams.firebaseinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <activity android:exported="false" android:name="com.microsoft.powerlift.android.RemedyActivity" android:theme="@style/Theme.PowerLift"/>
+        <receiver android:exported="false" android:name="com.microsoft.powerlift.android.internal.sync.SyncJobBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.evernote.android.job.ADD_JOB_CREATOR"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.evernote.android.job.v21.PlatformJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.evernote.android.job.v14.PlatformAlarmService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.evernote.android.job.v14.PlatformAlarmServiceExact"/>
+        <receiver android:exported="false" android:name="com.evernote.android.job.v14.PlatformAlarmReceiver">
+            <intent-filter>
+                <action android:name="com.evernote.android.job.v14.RUN_JOB"/>
+                <action android:name="net.vrallev.android.job.v14.RUN_JOB"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.evernote.android.job.JobBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="false" android:exported="true" android:name="com.evernote.android.job.gcm.PlatformGcmService" android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.evernote.android.job.JobRescheduleService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="true" android:label="" android:name="com.microsoft.intune.mam.client.notification.MAMNotificationReceiverService"/>
+        <service android:exported="false" android:label="" android:name="com.microsoft.intune.mam.client.service.MAMBackgroundService"/>
+        <service android:exported="false" android:label="" android:name="com.microsoft.intune.mam.client.service.MAMBackgroundJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:name="com.microsoft.intune.mam.client.service.MAMBackgroundReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineStartupBlockedActivity"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineRestartRequiredActivity"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.startup.MAMStartupActivity"/>
+        <activity android:exported="false" android:name="com.microsoft.intune.mam.client.app.resolver.MAMResolverActivity" android:taskAffinity="" android:theme="@style/MAMDialogTheme"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineInstallCompanyPortalDialogActivity" android:theme="@style/MAMDialogTheme"/>
+        <activity android:exported="false" android:name="com.microsoft.intune.mam.client.app.offline.OfflineNotifyWipeActivity"/>
+        <activity android:exported="false" android:label="ComplianceBlock" android:name="com.microsoft.intune.mam.client.app.startup.MAMComplianceBlockActivity"/>
+        <service android:enabled="true" android:exported="true" android:name="com.microsoft.tokenshare.TokenSharingService">
+            <intent-filter>
+                <action android:name="com.microsoft.tokenshare.TokenSharingService"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="token_share_sdk_version" android:value="2"/>
+        <meta-data android:name="token_share_build_version" android:value="1.3.5"/>
+        <meta-data android:name="token_share_parcelable_version" android:value="3"/>
+        <receiver android:name="com.instacart.library.truetime.BootCompletedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.microsoft.teams.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <meta-data android:name="com.microsoft.applications.telemetry.tenantToken" android:value="1da23ef29088440eababab323c676fd9-ae63b4b9-7f9a-4729-a31e-1c2017116813-6912"/>
+        <meta-data android:name="com.microsoft.applications.telemetry.enableAutoUserSession" android:value="true"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:label="" android:multiprocess="true" android:name="com.microsoft.office.lensactivitycore.OfficeLensActivity" android:screenOrientation="nosensor" android:theme="@style/lenssdk_defaultTheme" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:multiprocess="true" android:name="com.microsoft.office.lensactivitycore.ProcessActivity" android:screenOrientation="nosensor" android:theme="@style/lenssdk_defaultTheme" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:multiprocess="true" android:name="com.microsoft.office.lensactivitysdk.LensSplashActivity" android:screenOrientation="portrait" android:theme="@style/lenssdk_activity_theme"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:multiprocess="true" android:name="com.microsoft.office.lensgallerysdk.immersivegallery.ImmersiveGalleryActivity" android:screenOrientation="nosensor" android:theme="@style/LensGallerySDKCommonTheme"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:multiprocess="true" android:name="com.microsoft.office.lensbarcodescannersdk.ui.LensBarCodeScannerActivity" android:screenOrientation="nosensor" android:theme="@style/lenssdk_barcode_defaultTheme" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+    </application>
+</manifest>
