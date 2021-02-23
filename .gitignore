@@ -1,5 +1,6 @@
 /apk
 /executables
 /backup
+/backup/*
 *.apk
 *.exe
