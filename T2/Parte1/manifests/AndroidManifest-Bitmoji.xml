@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" package="com.bitstrips.imoji" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <permission android:name="com.bitstrips.imoji.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.bitstrips.imoji.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <permission android:description="@string/content_provider_permission_description" android:label="@string/content_provider_permission_label" android:name="com.bitstrips.imoji.provider.READ" android:protectionLevel="normal"/>
+    <permission android:description="@string/content_provider_friends_permission_description" android:label="@string/content_provider_friends_permission_label" android:name="com.bitstrips.imoji.provider.FRIENDS" android:protectionLevel="normal"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@mipmap/icon" android:label="@string/app_name" android:largeHeap="true" android:name="com.bitstrips.imoji.ImojiApplication" android:networkSecurityConfig="@xml/network_security_config" android:supportsRtl="true" android:theme="@style/AppTheme">
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="7f461218953530072a25c0c239114faf647ab688"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.google.android.gms.analytics.globalConfigResource" android:resource="@xml/analytics_global_config"/>
+        <receiver android:enabled="true" android:exported="true" android:name="com.bitstrips.imoji.receivers.LocaleChangedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.SnapchatAppIndexingUpdateReceiver" android:permission="com.snapchat.android.permission.UPDATE_STICKER_INDEX">
+            <intent-filter>
+                <action android:name="com.snapchat.android.UPDATE_STICKER_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.SnapchatDebugAppIndexingUpdateReceiver" android:permission="com.snapchat.android.debug.permission.UPDATE_STICKER_INDEX">
+            <intent-filter>
+                <action android:name="com.snapchat.android.UPDATE_STICKER_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.SnapchatMasterAppIndexingUpdateReceiver" android:permission="com.snapchat.android.master.permission.UPDATE_STICKER_INDEX">
+            <intent-filter>
+                <action android:name="com.snapchat.android.UPDATE_STICKER_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.GboardAppIndexingUpdateReceiver" android:permission="com.google.android.apps.inputmethod.latin.permission.UPDATE_STICKER_INDEX">
+            <intent-filter>
+                <action android:name="com.google.android.apps.inputmethod.latin.UPDATE_STICKER_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.GboardDevAppIndexingUpdateReceiver" android:permission="com.google.android.apps.inputmethod.latin.dev.permission.UPDATE_STICKER_INDEX">
+            <intent-filter>
+                <action android:name="com.google.android.apps.inputmethod.latin.dev.UPDATE_STICKER_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.bitstrips.imoji.receivers.FirebaseAppIndexingUpdateReceiver" android:permission="com.google.android.gms.permission.APPINDEXING">
+            <intent-filter>
+                <action android:name="com.google.firebase.appindexing.UPDATE_INDEX"/>
+            </intent-filter>
+        </receiver>
+        <activity android:launchMode="singleTop" android:name="com.bitstrips.imoji.ui.activities.DeepLinkActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="bitmojiapp"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="bitmoji-sdk"/>
+                <data android:host="login"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="bitmoji.com"/>
+                <data android:host="test.bitmoji.com"/>
+                <data android:host="www.bitmoji.com"/>
+                <data android:pathPrefix="/snapchat"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="imoji"/>
+                <data android:host="upgrade_avatar_deluxe"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="bitmoji.com"/>
+                <data android:pathPrefix="/friendmoji"/>
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.bitstrips.imoji.authentication.ui.activity.OAuth2ChromeActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:launchMode="singleTop" android:name="com.bitstrips.imoji.ui.LandingActivity" android:screenOrientation="sensorPortrait" android:taskAffinity="@string/landing_task_affinity" android:theme="@style/LandingTheme">
+            <intent-filter>
+                <action android:name="com.bitstrips.imoji.MESSAGE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.OPENABLE"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="singleTop" android:name="com.bitstrips.imoji.ui.LoginActivity" android:screenOrientation="sensorPortrait" android:theme="@style/BitmojiGreenTheme"/>
+        <activity android:label="@string/sign_up" android:name="com.bitstrips.imoji.ui.activities.SignUpActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:label="terms_changed" android:name="com.bitstrips.imoji.ui.activities.TermsChangedActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:label="privacy_updated" android:name="com.bitstrips.imoji.ui.activities.PrivacyUpdateActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:label="@string/log_in" android:name="com.bitstrips.imoji.ui.BSLoginActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:label="@string/reset_password" android:name="com.bitstrips.imoji.ui.BSPasswordRecoveryActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:launchMode="singleTop" android:name="com.bitstrips.imoji.browser.ImojiBrowserActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan">
+            <intent-filter android:autoVerify="true" android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="bitmoji.com" android:pathPrefix="/browser" android:scheme="http"/>
+                <data android:host="bitmoji.com" android:pathPrefix="/browser" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.bitstrips.imoji.ui.ImojiWebViewActivity" android:screenOrientation="sensorPortrait">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.bitstrips.imoji.browser.ImojiBrowserActivity"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:launchMode="singleTask" android:name="com.bitstrips.merlin.ui.activities.MerlinActivity" android:parentActivityName="com.bitstrips.imoji.ui.LoginActivity" android:screenOrientation="sensorPortrait" android:theme="@style/MerlinTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"/>
+                <data android:host="accounts.snapchat.com"/>
+                <data android:path="/accounts/verify/bitmoji_app"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/connect_to_snapchat_title" android:name="com.bitstrips.imoji.ui.activities.ConnectSnapchatActivity" android:screenOrientation="portrait" android:theme="@style/BitmojiGreenTheme"/>
+        <activity android:name="com.bitstrips.imoji.behaviour.SecretBehaviourActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.bitstrips.imoji.abv3.AvatarBuilderActivityV3" android:screenOrientation="portrait" android:theme="@style/AvatarBuilderTheme"/>
+        <provider android:authorities="@string/fileprovider_authority" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/filepaths"/>
+        </provider>
+        <activity android:label="@string/bs_auth_link_activity_title" android:name="com.bitstrips.imoji.ui.activities.LinkBSAccountToSnapchatActivity" android:screenOrientation="sensorPortrait"/>
+        <service android:exported="false" android:name="com.bitstrips.imoji.firebase.AppIndexingService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.bitstrips.imoji.firebase.AppIndexingLegacyWrapperService"/>
+        <service android:exported="true" android:name="com.bitstrips.imoji.firebase.AppIndexingJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:label="@string/keyboard_v2_name" android:name="com.bitstrips.imoji.keyboard.BitmojiKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
+            <meta-data android:name="android.view.im" android:resource="@xml/method_v2"/>
+            <intent-filter>
+                <action android:name="android.view.InputMethod"/>
+            </intent-filter>
+        </service>
+        <activity android:name="com.bitstrips.keyboard.ui.activity.KeyboardOnboardingActivity" android:screenOrientation="sensorPortrait" android:theme="@style/OnboardingTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:label="@string/english_ime_settings" android:name="rkr.simplekeyboard.inputmethod.latin.settings.SettingsActivity" android:theme="@style/platformSettingsTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="rkr.simplekeyboard.inputmethod.latin.SystemBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.bitstrips.imoji.provider" android:enabled="true" android:exported="true" android:name="com.bitstrips.contentprovider.ContentProvider"/>
+        <activity android:label="" android:name="com.bitstrips.contentprovider.ui.activity.ConnectedAppsActivity" android:permission="com.bitstrips.imoji.provider.READ" android:screenOrientation="sensorPortrait" android:theme="@style/ConnectedAppsTheme"/>
+        <activity android:excludeFromRecents="true" android:name="com.bitstrips.contentprovider.ui.activity.AuthorizationActivity" android:theme="@style/ModalScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="imoji"/>
+                <data android:host="content-provider"/>
+                <data android:path="/connected-apps"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.bitstrips.dazzle.ui.activity.ProductDetailActivity" android:screenOrientation="sensorPortrait" android:theme="@style/DazzleTheme"/>
+        <activity android:name="com.bitstrips.authv2.ui.activity.LoginV2Activity"/>
+        <activity android:name="com.bitstrips.davinci.ui.activity.DavinciOnboardingActivity" android:screenOrientation="sensorPortrait" android:theme="@style/OnboardingTheme" android:windowSoftInputMode="adjustResize"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_bitmoji_statusicon"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/push_icon_green"/>
+        <service android:exported="false" android:name="com.bitstrips.push.service.BitmojiFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <receiver android:exported="true" android:name="com.bitstrips.push.receiver.NotificationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="notification_clicked"/>
+                <action android:name="notification_deleted"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.bitstrips.sharing.provider" android:grantUriPermissions="true" android:name="com.bitstrips.sharing.provider.SharingContentProvider"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"/>
+        <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule" android:value="GlideModule"/>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.bitstrips.imoji.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+        <provider android:authorities="com.bitstrips.imoji.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <activity android:name="com.microsoft.appcenter.distribute.DeepLinkActivity" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="updates" android:path="/" android:scheme="appcenter"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.microsoft.appcenter.distribute.DownloadManagerReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.bumptech.glide.integration.webp.WebpGlideModule" android:value="GlideModule"/>
+    </application>
+</manifest>
