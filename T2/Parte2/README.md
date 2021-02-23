@@ -9,3 +9,5 @@ Para obter a lista de seções por executável dentro do diretório em questão 
 python3 compara.py <nome_do_binario_1> <nome_do_binario_2>
 ```
 Para comparar as seções de dois binários
+
+OBS: Os executáveis testados não foram incluídos no repositório devido ao limite de tamanho de arquivos do Github
