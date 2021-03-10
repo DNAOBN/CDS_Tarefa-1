@@ -88,7 +88,7 @@ for personName in dir:
 
     if isEmailValid(content):
       results.write(content)
-      results.write('\n\n###---###---###---###\n\n')
+      results.write('\n\n')
       totalCount += 1
       emailsPerPerson[personName] += 1
 
