@@ -1,6 +1,4 @@
 import os
-from pathlib import Path
-from posix import listdir
 
 MAX_EMAILS_PER_PERSON = 100
 MAX_EMAILS = 4000
@@ -52,6 +50,7 @@ def countSentEmails(dir):
       file.close()
   return count, emailsPerPerson
 
+# Main Program
 
 dir = os.listdir('./dataset/maildir')
 results = open('./dataset/benign_emails.txt', 'w')
