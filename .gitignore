@@ -4,3 +4,6 @@
 /backup/*
 *.apk
 *.exe
+
+/Projeto/dataset/maildir
+/Projeto/dataset/*.tar.gz
