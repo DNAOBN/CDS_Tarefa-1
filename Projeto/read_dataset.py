@@ -57,7 +57,7 @@ def readDataset(dataset_path):
     current_email = Email()
     dataset_matrix = []
 
-    for line in dataset_file:
+    for line in dataset_file.readlines():
 
         # Check for a new email first header
         if getMatching(EMAIL_FIRST_HEADER_REGEX, line):
