@@ -1,12 +1,13 @@
 import re
 import sys
+import io
 
 # ==============================================================================
 # === FILE READING =============================================================
 
 def openFile(filePath):
     try:
-        return open(filePath, 'r')
+        return io.open(filePath, 'r', encoding='windows-1252')
     except:
         sys.stdout.write('Could not find file "{}"\n'.format(filePath))
         exit(1)
@@ -42,11 +43,18 @@ class Email(object):
     def hasBody(self):
         return self.body is not None
 
+    def isEmpty(self):
+        [subject, content_type, body] = self.getEmailData()
+        return not (subject or content_type or body)
+
 
 # ==============================================================================
 # === READ DATASET =============================================================
 
-EMAIL_FIRST_HEADER_REGEX = '^From r  \w{3} \w{3} ( ?\d{1,2}) \d{2}:\d{2}:\d{2} \d{4}$'
+EMAIL_FIRST_HEADER_REGEX = None
+FRAUD_FIRST_HEADER_REGEX = '^From r  \w{3} \w{3} ( ?\d{1,2}) \d{2}:\d{2}:\d{2} \d{4}$'
+BENIGN_FIRST_HEADER_REGEX = '^Message-ID: <(.*)>'
+
 EMAIL_SUBJECT_REGEX = '^Subject: (.*)$'
 EMAIL_CONTENT_TYPE_REGEX = '^Content-Type: ([\w\/\-]*);'
 EMAIL_BODY_START_REGEX = '^(\n|\r\n)'
@@ -57,11 +65,12 @@ def readDataset(dataset_path):
     current_email = Email()
     dataset_matrix = []
 
-    for line in dataset_file.readlines():
+    for line in dataset_file:
 
         # Check for a new email first header
         if getMatching(EMAIL_FIRST_HEADER_REGEX, line):
-            dataset_matrix.append( current_email.getEmailData() )
+            if not current_email.isEmpty():
+                dataset_matrix.append( [*current_email.getEmailData(), is_dataset_benign] )
             current_email.reset()
             continue
 
@@ -100,11 +109,19 @@ if __name__ == '__main__':
     stdout = sys.stdout
 
     if argc != 2:
-        stdout.write('Usage: python read-dataset.py dataset.txt\n')
+        stdout.write('Usage: python3 read-dataset.py <dataset>.txt\n')
         exit(1)
 
     dataset_path = argv[1]
+
+    # Sets first header regex based on dataset type
+    is_dataset_benign = 1 if dataset_path.find('benign') != -1 else 0
+    if (is_dataset_benign):
+        EMAIL_FIRST_HEADER_REGEX = BENIGN_FIRST_HEADER_REGEX
+    else:
+        EMAIL_FIRST_HEADER_REGEX = FRAUD_FIRST_HEADER_REGEX
+
     dataset_matrix = readDataset(dataset_path)
 
     stdout.write('Numero de emails = {}\n\n'.format(len(dataset_matrix)))
-    stdout.write('\n{}\n'.format(dataset_matrix[2][:2]))
+    open(f'{"benign" if is_dataset_benign else "fraud"}_matrix.txt', 'w').write(f'{dataset_matrix}')
