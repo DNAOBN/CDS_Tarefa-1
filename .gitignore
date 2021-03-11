@@ -7,3 +7,6 @@
 
 /Projeto/dataset/maildir
 /Projeto/dataset/*.tar.gz
+
+settings.json
+__pycache__
