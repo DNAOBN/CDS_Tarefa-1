@@ -39,44 +39,48 @@ def generateDataset():
 
 
 def getDataset80():
-  # Tries to open existing dataset (saved as list)
-  # if it does not exist, generates a new one
-  try:
-      dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'rb')
-  except:
-      generateSplitDatasets()
-      dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'wb')
+    # Tries to open existing dataset (saved as list)
+    # if it does not exist, generates a new one
+    try:
+        dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'rb')
+    except:
+        print('WARNING: 80% Dataset not found, generating new one')
+        generateSplitDatasets()
+        dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'wb')
 
-  dataset = pickle.load(dataset_file)
-  return dataset
+    dataset = pickle.load(dataset_file)
+    return dataset
 
 
 def getDataset20():
-  # Tries to open existing dataset (saved as list)
-  # if it does not exist, generates a new one
-  try:
-      dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'rb')
-  except:
-      generateSplitDatasets()
-      dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'wb')
+    # Tries to open existing dataset (saved as list)
+    # if it does not exist, generates a new one
+    try:
+        dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'rb')
+    except:
+        print('WARNING: 20% Dataset not found, generating new one')
+        generateSplitDatasets()
+        dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'wb')
 
-  dataset = pickle.load(dataset_file)
-  return dataset
+    dataset = pickle.load(dataset_file)
+    return dataset
 
 
 # Generates the percentage split dataset files
 def generateSplitDatasets():
-  dataset = generateDataset()
-  splitIndex = int(round(0.8*len(dataset)))
-  dataset_80, dataset_20 = dataset[:splitIndex], dataset[splitIndex:]
+    print('Generating percentage split datasets')
+    dataset = generateDataset()
+    splitIndex = int(round(0.8*len(dataset)))
+    dataset_80, dataset_20 = dataset[:splitIndex], dataset[splitIndex:]
 
-  dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'wb')
-  pickle.dump(dataset_80, dataset_file)
-  dataset_file.close()
+    dataset_file = open('./dataset/percentage-split/dataset_80.bin', 'wb')
+    pickle.dump(dataset_80, dataset_file)
+    dataset_file.close()
 
-  dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'wb')
-  pickle.dump(dataset_20, dataset_file)
-  dataset_file.close()
+    dataset_file = open('./dataset/percentage-split/dataset_20.bin', 'wb')
+    pickle.dump(dataset_20, dataset_file)
+    dataset_file.close()
 
 
-generateSplitDatasets()
+if __name__ == '__main__':
+    generateSplitDatasets()

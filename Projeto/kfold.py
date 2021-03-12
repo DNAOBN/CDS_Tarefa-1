@@ -17,21 +17,21 @@ def getKFoldDatasets(testFolder):
         quit()
     return train_dataset, test_dataset
 
+if __name__ == '__main__':
+    dataset = getDataset80()
+    k_dataset = [None, None, None, None, None]
 
-dataset = getDataset80()
-k_dataset = [None, None, None, None, None]
+    splitIndex = int(round(0.20*len(dataset)))
 
-splitIndex = int(round(0.20*len(dataset)))
+    for i in range(0, 5):
+        startIndex = i * splitIndex
+        endIndex = (i+1) * splitIndex if i < 4 else len(dataset)
+        k_dataset[i] = dataset[startIndex : endIndex]
 
-for i in range(0, 5):
-    startIndex = i * splitIndex
-    endIndex = (i+1) * splitIndex if i < 4 else len(dataset)
-    k_dataset[i] = dataset[startIndex : endIndex]
-
-for i in range(0, len(k_dataset)):
-    try:
-        mkdir('./dataset/k-fold')
-    except:
-        None
-    file = open(f'./dataset/k-fold/{i}', 'wb')
-    pickle.dump(k_dataset[i], file)
+    for i in range(0, len(k_dataset)):
+        try:
+            mkdir('./dataset/k-fold')
+        except:
+            None
+        file = open(f'./dataset/k-fold/{i}', 'wb')
+        pickle.dump(k_dataset[i], file)

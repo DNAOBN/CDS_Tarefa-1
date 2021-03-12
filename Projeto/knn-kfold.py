@@ -58,7 +58,6 @@ for i in range(0, 5):
   error = metrics.mean_absolute_error(test_target_array, result)
   print(f'Error: {error}')
 
-
   metrics.plot_roc_curve(clf, test_matrix, test_target_array, ax=axes)
   
 plt.show()
