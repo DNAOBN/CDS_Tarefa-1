@@ -30,11 +30,11 @@ def generateDataset():
 # Tries to open existing dataset (saved as list)
 # if it does not exist, generates a new one
 try:
-    dataset_file = open('./dataset/full_dataset.txt', 'rb')
+    dataset_file = open('./dataset/full_dataset.bin', 'rb')
     dataset = pickle.load(dataset_file)
 except:
     dataset = generateDataset()
-    dataset_file = open('./dataset/full_dataset.txt', 'wb')
+    dataset_file = open('./dataset/full_dataset.bin', 'wb')
     pickle.dump(dataset, dataset_file)
 
 # Splits dataset in 80 - 20
