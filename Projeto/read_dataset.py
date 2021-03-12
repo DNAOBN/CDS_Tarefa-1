@@ -63,12 +63,12 @@ EMAIL_SUBJECT_REGEX = '^Subject: (.*)$'
 EMAIL_CONTENT_TYPE_REGEX = '^Content-Type: ([\w\/\-]*);'
 EMAIL_BODY_START_REGEX = '^(\n|\r\n)'
 
-# Returns an array of [Subject, content_type, body, is_benign]
-def readDataset(dataset_path, is_benign):
-    if (is_benign):
-        EMAIL_FIRST_HEADER_REGEX = BENIGN_FIRST_HEADER_REGEX
-    else:
+# Returns an array of [Subject, content_type, body, is_fraud]
+def readDataset(dataset_path, is_fraud):
+    if (is_fraud):
         EMAIL_FIRST_HEADER_REGEX = FRAUD_FIRST_HEADER_REGEX
+    else:
+        EMAIL_FIRST_HEADER_REGEX = BENIGN_FIRST_HEADER_REGEX
 
     dataset_file = openFile(dataset_path)
 
@@ -80,7 +80,7 @@ def readDataset(dataset_path, is_benign):
         # Check for a new email first header
         if getMatching(EMAIL_FIRST_HEADER_REGEX, line):
             if not current_email.isEmpty():
-                dataset_matrix.append( [*current_email.getEmailData(), is_benign] )
+                dataset_matrix.append( [*current_email.getEmailData(), is_fraud] )
             current_email.reset()
             continue
 
@@ -125,12 +125,11 @@ if __name__ == '__main__':
     dataset_path = argv[1]
 
     # Sets first header regex based on dataset type
-    is_dataset_benign = 1 if dataset_path.find('benign') != -1 else 0
-    dataset_matrix = readDataset(dataset_path, is_dataset_benign)
+    is_dataset_fraud = 1 if dataset_path.find('benign') == -1 else 0
+    dataset_matrix = readDataset(dataset_path, is_dataset_fraud)
 
     stdout.write('Numero de emails = {}\n\n'.format(len(dataset_matrix)))
     try:
         os.mkdir('matrices')
     except:
         None
-    open(f'./matrices/{"benign" if is_dataset_benign else "fraud"}_matrix.txt', 'w').write(f'{dataset_matrix}')

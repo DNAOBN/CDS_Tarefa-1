@@ -8,31 +8,31 @@ class field(IntEnum):
     SUBJECT = 0
     CONTENT_TYPE = 1
     BODY = 2
-    IS_BENIGN = 3
+    IS_FRAUD = 3
 
 # Returns an array of processed emails
 # generated from their respective files
 def generateDataset():
 
     # Reads email datasets and creates arrays of objects
-    # of type [subject, content_type, body, is_benign]
+    # of type [subject, content_type, body, is_fraud]
     try:
-        benign_dataset = readDataset('./dataset/raw/benign_emails.txt', 1)
+        benign_dataset = readDataset('./dataset/raw/benign_emails.txt', 0)
     except:
         print('ERROR: Cannot find benign emails dataset')
         print('Please download and unzip the enron email dataset indo ./dataset')
         print('and run "python3 process_enron.py"')
 
     try:
-        fraud_dataset = readDataset('./dataset/raw/fraudulent_emails.txt', 0)
+        fraud_dataset = readDataset('./dataset/raw/fraudulent_emails.txt', 1)
     except:
         print('ERROR: Cannot find fraudulent emails dataset, please download it')
         print('from kaggle and unzip it into ./dataset')
 
     # Joins datasets
     full_dataset = [*benign_dataset, *fraud_dataset]
-    # Extracts only subject and is_benign
-    dataset = [[email[field.SUBJECT], email[field.IS_BENIGN]] for email in full_dataset]
+    # Extracts only subject and is_fraud
+    dataset = [[email[field.SUBJECT], email[field.IS_FRAUD]] for email in full_dataset]
     # Shuffles the array
     shuffle(dataset)
     return dataset
