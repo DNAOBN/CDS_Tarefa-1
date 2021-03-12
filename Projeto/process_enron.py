@@ -1,5 +1,10 @@
 import os
 
+# Script utilizado apenas para a extração de emails
+# válidos do dataset da enron e criação de um dataset
+# único (benign_emails.txt)
+
+
 MAX_EMAILS_PER_PERSON = 100
 MAX_EMAILS = 4000
 
