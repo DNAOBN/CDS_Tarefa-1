@@ -1,12 +1,12 @@
 from sklearn import metrics
 
-def split80_20(data):
-    split_index = int(round(0.8*len(data)))
+def splitDataset(data, percentage=0.8):
+    split_index = int(round(percentage*len(data)))
 
-    section80 = data[:split_index]
-    section20 = data[split_index:]
+    section_1 = data[:split_index]
+    section_2 = data[split_index:]
 
-    return [section80, section20]
+    return [section_1, section_2]
 
 def extractDataAndTargetValues(dataset):
     data_values   = [value[0] for value in dataset]
@@ -17,7 +17,7 @@ def extractDataAndTargetValues(dataset):
 
 class ClassifierDataset():
     def __init__(self, data):
-        training_dataset, test_dataset = split80_20(data)
+        training_dataset, test_dataset = splitDataset(data)
 
         test_data, test_target = extractDataAndTargetValues(test_dataset)
         training_data, training_target = extractDataAndTargetValues(training_dataset)
