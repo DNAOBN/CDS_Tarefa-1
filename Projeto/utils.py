@@ -55,8 +55,9 @@ def printConfusionMatrix(confusion_matrix):
     if confusion_matrix is None:
         print('printConfusionMatrix - Invalid confusion matrix')
 
-    fraud_fraud, fraud_benign, benign_fraud, benign_benign = confusion_matrix
+    benign_benign, benign_fraud, fraud_benign, fraud_fraud = confusion_matrix
 
-    print(f'CONFUSION MTX | Benign | Fraud')
-    print(f'[REAL] Benign | {benign_benign: 6} | {benign_fraud: 5}')
-    print(f'[REAL]  Fraud | {fraud_benign: 6} | {fraud_fraud: 5}')
+    print(f'  CONFUSION   |   [PREDICTED]  |')
+    print(f'   MATRIX     | Benign | Fraud |')
+    print(f'[REAL] Benign | {benign_benign: 6} | {benign_fraud: 5} |')
+    print(f'[REAL]  Fraud | {fraud_benign: 6} | {fraud_fraud: 5} |')
