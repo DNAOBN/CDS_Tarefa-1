@@ -41,3 +41,22 @@ class ClassifierDataset():
         confusion_matrix = metrics.confusion_matrix(self.test_target, self.test_result).ravel()
 
         return [precision_score, error, confusion_matrix]
+
+
+def printPrecisionScore(precision_score):
+    print(f'Precision Score: {precision_score}')
+
+def printMeanAbsoluteError(error):
+    print(f'Mean Absolute Error: {error}')
+
+# @param confusion_matrix must be a tuple with the following form
+#   (true_negative, false_positive, false_negative, true_positive)
+def printConfusionMatrix(confusion_matrix):
+    if confusion_matrix is None:
+        print('printConfusionMatrix - Invalid confusion matrix')
+
+    fraud_fraud, fraud_benign, benign_fraud, benign_benign = confusion_matrix
+
+    print(f'CONFUSION MTX | Benign | Fraud')
+    print(f'[REAL] Benign | {benign_benign: 6} | {benign_fraud: 5}')
+    print(f'[REAL]  Fraud | {fraud_benign: 6} | {fraud_fraud: 5}')
