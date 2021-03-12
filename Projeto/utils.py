@@ -16,8 +16,13 @@ def extractDataAndTargetValues(dataset):
 
 
 class ClassifierDataset():
-    def __init__(self, data):
-        training_dataset, test_dataset = splitDataset(data)
+    def __init__(self, data, aux_data=None):
+        if aux_data == None:
+            training_dataset, test_dataset = splitDataset(data)
+        else:
+            training_dataset = data
+            test_dataset = aux_data
+            data = [*training_dataset, *test_dataset]
 
         test_data, test_target = extractDataAndTargetValues(test_dataset)
         training_data, training_target = extractDataAndTargetValues(training_dataset)
