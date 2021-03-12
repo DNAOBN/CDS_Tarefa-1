@@ -58,7 +58,7 @@ def countSentEmails(dir):
 # Main Program
 
 dir = os.listdir('./dataset/maildir')
-results = open('./dataset/benign_emails.txt', 'w')
+results = open('./dataset/raw/benign_emails.txt', 'w')
 
 emailsPerPerson = {}
 totalCount = 0
