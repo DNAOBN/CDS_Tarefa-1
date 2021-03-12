@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
-from sklearn import metrics, neighbors
+from sklearn import metrics
 from sklearn.feature_extraction.text import TfidfVectorizer
-from percentage_split import getDataset80
+from sklearn.neural_network import MLPClassifier
+from kfold import getDataset80
 
 dataset = getDataset80()
 
 # Splits dataset in 80 - 20 proportion
-splitIndex = int(round(0.8*len(dataset)))
+splitIndex = int(round(0.80*len(dataset)))
 train_dataset, test_dataset = dataset[:splitIndex], dataset[splitIndex:]
 
 # Separates data and target values
@@ -21,14 +22,11 @@ test_target_array = [email[1] for email in test_dataset]
 tfIdfVectorizer=TfidfVectorizer(use_idf=True)
 train_matrix = tfIdfVectorizer.fit_transform(train_data_array).toarray()
 
-n_neighbors = 15
 
-# Trains KNN model
 print('Starting fit')
-clf = neighbors.KNeighborsClassifier(n_neighbors)
+clf = MLPClassifier(random_state=1, max_iter=300, hidden_layer_sizes=(20, 20, 20))
 clf.fit(train_matrix, train_target_array)
 print('Finished fit')
-
 
 # Creates testing tf-idf matrix
 test_matrix = tfIdfVectorizer.transform(test_data_array).toarray()
