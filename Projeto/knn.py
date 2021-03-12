@@ -6,6 +6,8 @@ from sklearn import neighbors
 from random import shuffle
 import pickle
 from sklearn import ensemble
+from sklearn import neighbors, svm, metrics
+import matplotlib.pyplot as plt
 
 class field(IntEnum):
     SUBJECT = 0
@@ -65,8 +67,8 @@ train_matrix = tfIdfVectorizer.fit_transform(train_data_array).toarray()
 n_neighbors = 15
 
 print('Starting fit')
-knn = neighbors.KNeighborsClassifier(n_neighbors)
-knn.fit(train_matrix, train_target_array)
+clf = neighbors.KNeighborsClassifier(n_neighbors)
+clf.fit(train_matrix, train_target_array)
 print('Finished fit')
 
 
@@ -74,7 +76,8 @@ print('Finished fit')
 # aux=TfidfVectorizer(use_idf=True)
 test_matrix = tfIdfVectorizer.transform(test_data_array).toarray()
 print('Starting prediction')
-result = knn.predict(test_matrix)
+result = clf.predict(test_matrix)
+print('Finished prediction')
 print('Starting score calculation')
 score = 0
 # predicted_real
@@ -92,3 +95,6 @@ for predicted, real in zip(list(result), test_target_array):
     score += 1 if predicted == real else 0
 
 print(score/len(result))
+
+metrics.plot_roc_curve(clf, test_matrix, test_target_array)  
+plt.show() 
