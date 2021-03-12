@@ -63,6 +63,7 @@ EMAIL_SUBJECT_REGEX = '^Subject: (.*)$'
 EMAIL_CONTENT_TYPE_REGEX = '^Content-Type: ([\w\/\-]*);'
 EMAIL_BODY_START_REGEX = '^(\n|\r\n)'
 
+# Returns an array of [Subject, content_type, body, is_benign]
 def readDataset(dataset_path, is_benign):
     if (is_benign):
         EMAIL_FIRST_HEADER_REGEX = BENIGN_FIRST_HEADER_REGEX
