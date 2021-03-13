@@ -4,9 +4,22 @@
 - Daniel Neves: GRR20171603
 - João Vitor Moreira: GRR20171621
 
+## Relatório
+[Link do relatório](./Relatorio.pdf)
+
+## Execução
+OBS: Todos os scripts são executados com `python3 <script.py> `
+
+Os arquivos base de datasets já estão todos criados, então basta escolher um dos arquivos de classificador (knn, knn-kfold, rf, rf-kfold, mlp ou mlp-kfold) e executá-lo para que o script treine e teste o modelo, primeiramente com os 80% (tanto com percentage_split quanto com k-fold) e depois com os 20%.
+## Scripts de criação de datasets
+OBS: Todos os scripts são executados com `python3 <script.py> `
+- `process_enron.py`: Script de pré-processamento do dataset de emails da Enron (gera o arquivo benign_emails.ts no diretório dataset/raw a partir do dataset extraído do arquivo encontrado [aqui](https://www.cs.cmu.edu/~enron/))
+- `percentage_split.py`: Cria as porções 80% e 20% do dataset no diretório dataset/percentage_split a partir dos arquivos fraudulent_emails.txt e benign_emails.txt
+- `kfold.py`: divide os 80% do dataset 
+
 ## Tipos de Dados
 
-Registros de emails considerados como "phishing", com propriedades majoritariamente textuais, mas também contendo combinações de letras e números (como por exemplo, endereços de email e versões de provedores de email).
+Registros de emails considerados como "phishing" e registros de email benignos, com propriedades majoritariamente textuais, mas também contendo combinações de letras e números (como por exemplo, endereços de email e versões de provedores de email).
 
 ## Objetivo
 
@@ -20,16 +33,12 @@ Os dados de cada email são rotulados no formato "rótulo: valor" (como por exem
 
 ## Distribuição de dados
 
-Os dados estão distribuídos em uma lista em um único arquivo .txt, um seguido do outro. Nem todos os emails contém todas as informações, porém alguns dados estão presentes em todos os emails (por exemplo, o remetente).
+![Distribuição dos Dados](data_distribution.png)
 
 ## Colunas e atributos selecionados
 
 As principais colunas que desejamos manter são:
-- Message-Id: O identificador do email
-- From: Endereço de email do remetente, com o objetivo de encontrar padrões nestes
-- Date: Data de envio, com o objetivo de encontrar padrões
 - Subject: Assunto do email, com o objetivo de encontrar palavras usadas com mais frequência
-- X-Mailer: Plataforma de envio do email, com o objetivo de verificar se alguma plataforma é utilizada com mais frequência para phishing
 - Content-Type: Tipo e codificação do conteúdo do email, com o objetivo verificar se algum destes é "preferido" para phishing
 - Conteúdo do email: Com o objetivo de verificar a existência de padrões ou recorrência de palavras
 
@@ -39,4 +48,8 @@ As demais colunas foram consideradas menos importantes para a análise dos dados
 ```
 Radev, D. (2008), CLAIR collection of fraud email, ACL Data and Code Repository, ADCR2008T001, http://aclweb.org/aclwiki
 ```
-link: https://www.kaggle.com/rtatman/fraudulent-email-corpus
+link fraudulentos: https://www.kaggle.com/rtatman/fraudulent-email-corpus
+```
+Cohen W. W. (2015), Enron Email Dataset, https://www.cs.cmu.edu/~./enron/
+```
+link benignos: https://www.cs.cmu.edu/~enron/
