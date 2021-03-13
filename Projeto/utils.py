@@ -62,7 +62,7 @@ def printConfusionMatrix(confusion_matrix):
 
     benign_benign, benign_fraud, fraud_benign, fraud_fraud = confusion_matrix
 
-    print(f'  CONFUSION   |   [PREDICTED]  |')
+    print(f'\n  CONFUSION   |   [PREDICTED]  |')
     print(f'   MATRIX     | Benign | Fraud |')
     print(f'[REAL] Benign | {benign_benign: 6} | {benign_fraud: 5} |')
     print(f'[REAL]  Fraud | {fraud_benign: 6} | {fraud_fraud: 5} |')
