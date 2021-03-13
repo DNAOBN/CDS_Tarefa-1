@@ -111,25 +111,3 @@ def readDataset(dataset_path, is_fraud):
 
     dataset_file.close()
     return dataset_matrix
-
-
-if __name__ == '__main__':
-    argv = sys.argv
-    argc = len(argv)
-    stdout = sys.stdout
-
-    if argc != 2:
-        stdout.write('Usage: python3 read-dataset.py <dataset>.txt\n')
-        exit(1)
-
-    dataset_path = argv[1]
-
-    # Sets first header regex based on dataset type
-    is_dataset_fraud = 1 if dataset_path.find('benign') == -1 else 0
-    dataset_matrix = readDataset(dataset_path, is_dataset_fraud)
-
-    stdout.write('Numero de emails = {}\n\n'.format(len(dataset_matrix)))
-    try:
-        os.mkdir('matrices')
-    except:
-        None
