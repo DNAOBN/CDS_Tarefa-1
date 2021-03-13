@@ -4,9 +4,11 @@ from sklearn import metrics
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neural_network import MLPClassifier
 from kfold import getKFoldDatasets
+from percentage_split import *
 
 # Plotting Confusion Matrix and ROC curve
-fig, (confusion_matrix_axes, roc_axes) = plt.subplots(1, 2)
+fig, roc_axes = plt.subplots(1, 1)
+fig, confusion_matrix_axes = plt.subplots(1, 5)
 
 for i in range(0, 5):
 
@@ -36,6 +38,9 @@ for i in range(0, 5):
 
 
   # Printing metrics
+  print('\n------------------------------------------------')
+  print(f'Classification results {i} for 80% of full dataset')
+  print('------------------------------------------------')
   precision_score, error, confusion_matrix = dataset.getResultMetrics()
   printPrecisionScore(precision_score)
   printMeanAbsoluteError(error)
@@ -43,6 +48,41 @@ for i in range(0, 5):
 
 
   # Plotting Confusion Matrix and ROC curve
-  metrics.plot_confusion_matrix(clf, test_matrix, dataset.test_target, ax = confusion_matrix_axes)
+  metrics.plot_confusion_matrix(clf, test_matrix, dataset.test_target, ax = confusion_matrix_axes[i])
   metrics.plot_roc_curve(clf, test_matrix, dataset.test_target, ax = roc_axes)
+
+
+  # ====================================
+  # Test with other 20% of whole dataset
+  # ====================================
+
+  # Extract data and class and convert to TF-IDF
+  test_data, test_target = extractDataAndTargetValues(getDataset20())
+  test_matrix = tfIdfVectorizer.transform(test_data).toarray()
+
+  # Predict test dataset classification
+  print('Starting prediction')
+  test_result = clf.predict(test_matrix)
+  print('Finished prediction')
+
+  # Calculate and print error, precision score and the confusion matrix
+  error = metrics.mean_absolute_error(test_target, test_result)
+  precision_score = metrics.precision_score(test_target, test_result)
+  confusion_matrix = metrics.confusion_matrix(test_target, test_result).ravel()
+
+  print('\n----------------------------------------------')
+  print('Classification results for 20% of full dataset')
+  print('----------------------------------------------')
+  printPrecisionScore(precision_score)
+  printMeanAbsoluteError(error)
+  printConfusionMatrix(confusion_matrix)
+
+
+  # Plotting Confusion Matrix and ROC curve
+  fig_20, (confusion_matrix_axes_20, roc_axes_20) = plt.subplots(1, 2)
+  fig_20.suptitle('Test results with 20% of full dataset')
+
+  metrics.plot_confusion_matrix(clf, test_matrix, test_target, ax = confusion_matrix_axes_20,
+                                labels=[0, 1], display_labels=['Benign', 'Fraud'])
+  metrics.plot_roc_curve(clf, test_matrix, test_target, ax = roc_axes_20)
 plt.show()
