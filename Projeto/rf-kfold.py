@@ -3,63 +3,86 @@ from sklearn import metrics
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from kfold import getKFoldDatasets
+from utils import *
+from percentage_split import *
 
-fig, axes = plt.subplots(1, 1)
+# Plotting Confusion Matrix and ROC curve
+fig, roc_axes = plt.subplots(1, 1)
+fig, confusion_matrix_axes = plt.subplots(1, 5)
 
 for i in range(0, 5):
-    
+
   train_dataset, test_dataset = getKFoldDatasets(i)
 
-  # Separates data and target values
-  train_data_array   = [email[0] for email in train_dataset]
-  train_target_array = [email[1] for email in train_dataset]
-
-  test_data_array   = [email[0] for email in test_dataset]
-  test_target_array = [email[1] for email in test_dataset]
+  dataset = ClassifierDataset(train_dataset, test_dataset)
 
 
-  # Creates training tf-idf matrix
+  # Creating tf-idf training and test matrix
   tfIdfVectorizer=TfidfVectorizer(use_idf=True)
-  train_matrix = tfIdfVectorizer.fit_transform(train_data_array).toarray()
+  training_matrix = tfIdfVectorizer.fit_transform(dataset.training_data).toarray()
+  test_matrix = tfIdfVectorizer.transform(dataset.test_data).toarray()
 
 
+  # Training random forest model
   print('Starting fit')
   clf = RandomForestClassifier(max_depth=None, random_state=0)
-  clf.fit(train_matrix, train_target_array)
+  clf.fit(training_matrix, dataset.training_target)
   print('Finished fit')
 
-  # Creates testing tf-idf matrix
-  test_matrix = tfIdfVectorizer.transform(test_data_array).toarray()
 
   # Predicts test dataset classification
   print('Starting prediction')
-  result = clf.predict(test_matrix)
+  test_result = clf.predict(test_matrix)
+  dataset.setTestResult(test_result)
   print('Finished prediction')
 
-  score = 0
 
-  # predicted_real
-  fraud_fraud = 0
-  fraud_benign = 0
-  benign_benign = 0
-  benign_fraud = 0
+  # Printing metrics
+  print('\n------------------------------------------------')
+  print(f'Classification results {i} for 80% of full dataset')
+  print('------------------------------------------------')
+  precision_score, error, confusion_matrix = dataset.getResultMetrics()
+  printPrecisionScore(precision_score)
+  printMeanAbsoluteError(error)
+  printConfusionMatrix(confusion_matrix)
 
-  for predicted, real in zip(list(result), test_target_array):
-      fraud_fraud += 1 if (predicted == 0 and real == 0) else 0
-      fraud_benign += 1 if (predicted == 0 and real == 1) else 0
-      benign_benign += 1 if (predicted == 1 and real == 1) else 0
-      benign_fraud += 1 if (predicted == 1 and real == 0) else 0
-      score += 1 if predicted == real else 0
 
-  print(f'Precision: {score/len(result)}')
-  error = metrics.mean_absolute_error(test_target_array, result)
-  print(f'Error: {error}')
+  # Plotting Confusion Matrix and ROC curve
+  metrics.plot_confusion_matrix(clf, test_matrix, dataset.test_target, ax = confusion_matrix_axes[i])
+  metrics.plot_roc_curve(clf, test_matrix, dataset.test_target, ax = roc_axes)
 
-  print(['       ', 'Fraude', 'Benigno'])
-  print(['Fraude ', fraud_fraud, benign_fraud])
-  print(['Benigno', benign_fraud, benign_benign])
 
-  metrics.plot_roc_curve(clf, test_matrix, test_target_array, ax=axes)
-  
+  # ====================================
+  # Test with other 20% of whole dataset
+  # ====================================
+
+  # Extract data and class and convert to TF-IDF
+  test_data, test_target = extractDataAndTargetValues(getDataset20())
+  test_matrix = tfIdfVectorizer.transform(test_data).toarray()
+
+  # Predict test dataset classification
+  print('Starting prediction')
+  test_result = clf.predict(test_matrix)
+  print('Finished prediction')
+
+  # Calculate and print error, precision score and the confusion matrix
+  error = metrics.mean_absolute_error(test_target, test_result)
+  precision_score = metrics.precision_score(test_target, test_result)
+  confusion_matrix = metrics.confusion_matrix(test_target, test_result).ravel()
+
+  print('\n----------------------------------------------')
+  print('Classification results for 20% of full dataset')
+  print('----------------------------------------------')
+  printPrecisionScore(precision_score)
+  printMeanAbsoluteError(error)
+  printConfusionMatrix(confusion_matrix)
+
+
+  # Plotting Confusion Matrix and ROC curve
+  fig_20, (confusion_matrix_axes_20, roc_axes_20) = plt.subplots(1, 2)
+  fig_20.suptitle('Test results with 20% of full dataset')
+
+  metrics.plot_confusion_matrix(clf, test_matrix, test_target, ax = confusion_matrix_axes_20,
+                                labels=[0, 1], display_labels=['Benign', 'Fraud'])
+  metrics.plot_roc_curve(clf, test_matrix, test_target, ax = roc_axes_20)
 plt.show()
-
