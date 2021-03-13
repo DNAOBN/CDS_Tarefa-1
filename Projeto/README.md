@@ -7,6 +7,9 @@
 ## Relatório
 [Link do relatório](./Relatorio.pdf)
 
+## Apresentação
+[Link da apresentação](https://drive.google.com/file/d/1cPi2oHSgAUvCqalAp2HKQqeOJnn3jZhb/view?usp=sharing)
+
 ## Execução
 OBS: Todos os scripts são executados com `python3 <script.py> `
 
